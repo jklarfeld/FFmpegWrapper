@@ -16,8 +16,18 @@
     if (self = [super initWithFile:outputFile]) {
         self.lastMuxDTS = AV_NOPTS_VALUE;
         self.frameNumber = 0;
+		
+		AVCodec *codec;
+		
+		if ([outputCodec isEqualToString:@"h264"])
+		{
+			codec = avcodec_find_encoder(CODEC_ID_H264);
+		}
+		else
+		{
+			codec = avcodec_find_encoder_by_name([outputCodec UTF8String]);
+		}
         
-        AVCodec *codec = avcodec_find_encoder_by_name([outputCodec UTF8String]);
         if (!codec) {
             NSLog(@"codec not found: %@", outputCodec);
         }

@@ -71,6 +71,7 @@
     for (int i = 0; i < inputStreamCount; i++) {
         FFInputStream *inputStream = [inputFile.streams objectAtIndex:i];
         FFOutputStream *outputStream = [[FFOutputStream alloc] initWithOutputFile:outputFile outputCodec:[inputStream codecName]];
+		//FFOutputStream *outputStream = [[FFOutputStream alloc] initWithOutputFile:outputFile outputCodec:@"mpeg4"];
         AVCodecContext *inputCodecContext = inputStream.stream->codec;
         AVCodecContext *outputCodecContext = outputStream.stream->codec;
         avcodec_copy_context(outputCodecContext, inputCodecContext);

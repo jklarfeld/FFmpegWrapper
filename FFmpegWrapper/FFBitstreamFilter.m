@@ -17,6 +17,7 @@
 
 - (id) initWithFilterName:(NSString *)filterName {
     if (self = [super init]) {
+		//av_register_all();
         self.bitstreamFilterContext = av_bitstream_filter_init([filterName UTF8String]);
     }
     return self;
